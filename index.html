@@ -10,28 +10,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:   #2E2618;
+      --bg:      #2E2618;
       --dark:    #241E16;
       --surface: #38301F;
       --panel:   #44392A;
       --gold:    #C9940A;
       --gold2:   #E8B84B;
-      --cream:   #F5EDD8;
-      --text:    #EDE0C8;
+      --text:    #F5EDD8;
+      --text2:   #EDE0C8;
       --muted:   #B09878;
       --border:  rgba(201,148,10,0.2);
     }
     body.light {
-      --black:   #FAF5EC;
+      --bg:      #FAF5EC;
       --dark:    #F5EDD8;
       --surface: #FFFFFF;
       --panel:   #F0E8D4;
       --gold:    #9A6C05;
       --gold2:   #B8820A;
-      --cream:   #1C1408;
       --text:    #1C1408;
+      --text2:   #2E2010;
       --muted:   #6B5A3E;
       --border:  rgba(154,108,5,0.2);
+    }
+    body.light nav {
+      background: rgba(250,245,236,0.95) !important;
+    }
+    body.light .reviews-grid .review-card,
+    body.light .hours-card,
+    body.light .about-pillars .pillar {
+      background: #F0E8D4;
     }
     .theme-toggle {
       background: transparent;
@@ -43,11 +51,11 @@
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all .2s; flex-shrink: 0;
     }
-    .theme-toggle:hover { background: var(--gold); color: var(--black); }
+    .theme-toggle:hover { background: var(--gold); color: var(--bg); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--black);
+      background: var(--bg);
       color: var(--text);
       font-family: 'Jost', sans-serif;
       font-weight: 400;
@@ -59,7 +67,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 56px; height: 72px;
-      background: rgba(0,0,0,0.15);
+      background: rgba(0,0,0,0.2);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -113,7 +121,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(56px, 7vw, 88px);
       font-weight: 600; line-height: 0.95;
-      letter-spacing: -0.01em; color: var(--cream);
+      letter-spacing: -0.01em; color: var(--text);
       margin-bottom: 8px;
     }
     h1 em { font-style: italic; color: var(--gold2); }
@@ -125,7 +133,7 @@
     }
     .hero-desc { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 480px; margin-bottom: 44px; font-weight: 300; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-gold { display: inline-block; background: var(--gold); color: var(--black); padding: 14px 36px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
+    .btn-gold { display: inline-block; background: var(--gold); color: var(--bg); padding: 14px 36px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
     .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
     .btn-ghost { display: inline-block; background: transparent; color: var(--text); padding: 14px 36px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(237,224,200,0.2); transition: all .2s; }
     .btn-ghost:hover { border-color: var(--text); transform: translateY(-2px); }
@@ -134,7 +142,7 @@
       border-top: 1px solid var(--border);
     }
     .hero-cat { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-    .hero-cat span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--cream); letter-spacing: 0; text-transform: none; margin-top: 4px; }
+    .hero-cat span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--text); letter-spacing: 0; text-transform: none; margin-top: 4px; }
 
     /* DIVIDER */
     .gold-divider {
@@ -147,14 +155,14 @@
     }
     .marquee { display: flex; gap: 56px; white-space: nowrap; animation: marquee 24s linear infinite; }
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    .m-item { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); flex-shrink: 0; }
+    .m-item { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); flex-shrink: 0; }
     .m-dot { color: rgba(8,6,4,0.4); }
 
     /* SECTIONS */
     section { padding: 100px 56px; }
     .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
     .eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--gold); }
-    h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,5vw,56px); font-weight: 600; line-height: 1; letter-spacing: -0.01em; color: var(--cream); margin-bottom: 20px; }
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,5vw,56px); font-weight: 600; line-height: 1; letter-spacing: -0.01em; color: var(--text); margin-bottom: 20px; }
     h2 em { font-style: italic; color: var(--gold2); }
     .section-desc { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 520px; font-weight: 300; }
 
@@ -169,11 +177,11 @@
     .about-img-accent {
       position: absolute; bottom: -32px; right: -32px;
       width: 55%; aspect-ratio: 1/1; object-fit: cover;
-      filter: brightness(0.85); border: 3px solid var(--black);
+      filter: brightness(0.85); border: 3px solid var(--bg);
     }
     .about-badge {
       position: absolute; top: 32px; left: -20px;
-      background: var(--gold); color: var(--black);
+      background: var(--gold); color: var(--bg);
       padding: 14px 18px; font-family: 'Cormorant Garamond', serif;
       font-size: 12px; font-weight: 700; text-align: center;
       box-shadow: 0 8px 24px rgba(201,148,10,0.3); z-index: 2;
@@ -184,11 +192,11 @@
     .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
     .pillar { background: var(--surface); border: 1px solid var(--border); padding: 20px; }
     .pillar-icon { font-size: 20px; margin-bottom: 8px; }
-    .pillar-title { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px; color: var(--cream); }
+    .pillar-title { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px; color: var(--text); }
     .pillar-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
     /* SELECTION */
-    #selection { background: var(--black); }
+    #selection { background: var(--bg); }
     .selection-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
     .selection-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
     .sel-card {
@@ -209,14 +217,14 @@
     .sel-body { padding: 28px 24px; flex: 1; }
     .sel-number { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 600; color: rgba(201,148,10,0.15); line-height: 1; margin-bottom: 16px; }
     .sel-icon { font-size: 32px; margin-bottom: 16px; }
-    .sel-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--cream); margin-bottom: 10px; }
+    .sel-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
     .sel-desc { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; }
     .sel-items { margin-top: 16px; display: flex; flex-direction: column; gap: 4px; }
     .sel-item { font-size: 12px; color: rgba(201,148,10,0.7); letter-spacing: 0.04em; }
     .sel-item::before { content: '— '; }
 
     /* REVIEWS */
-    #reviews { background: var(--black); }
+    #reviews { background: var(--bg); }
     .reviews-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 20px; }
     .rating-summary { text-align: right; }
     .rating-big { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 600; color: var(--gold2); line-height: 1; }
@@ -227,7 +235,7 @@
     .review-card::before { content: '"'; position: absolute; top: 16px; right: 20px; font-family: 'Cormorant Garamond', serif; font-size: 72px; color: rgba(201,148,10,0.1); line-height: 1; }
     .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 3px; margin-bottom: 14px; }
     .review-text { font-size: 14px; color: var(--muted); line-height: 1.8; font-style: italic; font-weight: 300; margin-bottom: 20px; }
-    .review-author { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); }
+    .review-author { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
     .review-source { font-size: 11px; color: rgba(201,148,10,0.5); margin-top: 3px; }
 
     /* FEATURED */
@@ -241,7 +249,7 @@
     .feat-card.large { min-height: 400px; }
     .feat-bg { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,6,4,0.9) 0%, rgba(8,6,4,0.3) 100%); }
     .feat-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; position: relative; z-index: 1; }
-    .feat-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--cream); position: relative; z-index: 1; margin-bottom: 8px; line-height: 1.1; }
+    .feat-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--text); position: relative; z-index: 1; margin-bottom: 8px; line-height: 1.1; }
     .feat-desc { font-size: 12px; color: var(--muted); position: relative; z-index: 1; line-height: 1.6; font-weight: 300; }
 
     /* HOURS */
@@ -259,8 +267,8 @@
     .contact-item { display: flex; gap: 18px; align-items: flex-start; padding: 22px; background: var(--surface); border: 1px solid var(--border); }
     .contact-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
     .contact-label { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
-    .contact-value { font-size: 15px; font-weight: 500; color: var(--cream); }
-    .contact-value a { color: var(--cream); text-decoration: none; }
+    .contact-value { font-size: 15px; font-weight: 500; color: var(--text); }
+    .contact-value a { color: var(--text); text-decoration: none; }
     .contact-value a:hover { color: var(--gold2); }
     .map-frame { width: 100%; aspect-ratio: 16/9; filter: sepia(40%) contrast(120%) brightness(0.7); border: none; display: block; margin-top: 20px; }
 
