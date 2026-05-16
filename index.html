@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:   #1C1610;
+      --black:   #2E2618;
       --dark:    #241E16;
-      --surface: #2E2618;
-      --panel:   #38301F;
+      --surface: #38301F;
+      --panel:   #44392A;
       --gold:    #C9940A;
       --gold2:   #E8B84B;
       --cream:   #F5EDD8;
@@ -20,6 +20,29 @@
       --muted:   #B09878;
       --border:  rgba(201,148,10,0.2);
     }
+    body.light {
+      --black:   #FAF5EC;
+      --dark:    #F5EDD8;
+      --surface: #FFFFFF;
+      --panel:   #F0E8D4;
+      --gold:    #9A6C05;
+      --gold2:   #B8820A;
+      --cream:   #1C1408;
+      --text:    #1C1408;
+      --muted:   #6B5A3E;
+      --border:  rgba(154,108,5,0.2);
+    }
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s; flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--gold); color: var(--black); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -35,9 +58,9 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 56px; height: 72px;
-      background: rgba(8,6,4,0.92);
+      background: rgba(0,0,0,0.15);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(201,148,10,0.12);
+      border-bottom: 1px solid var(--border);
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -49,7 +72,7 @@
     .nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
     .nav-links a:hover { color: var(--gold2); }
     .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 9px 22px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
-    .nav-cta:hover { background: var(--gold); color: var(--black); }
+    .nav-cta:hover { background: var(--gold); color: #fff; }
 
     /* HERO */
     #hero {
@@ -241,15 +264,15 @@
     .map-frame { width: 100%; aspect-ratio: 16/9; filter: sepia(40%) contrast(120%) brightness(0.7); border: none; display: block; margin-top: 20px; }
 
     /* FOOTER */
-    footer { background: #181208; padding: 60px 56px 40px; border-top: 1px solid var(--border); }
+    footer { background: #1C1408; padding: 60px 56px 40px; border-top: 1px solid var(--border); }
     .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; margin-bottom: 48px; }
     .footer-brand .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--gold2); margin-bottom: 4px; }
-    .footer-brand .tagline { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-    .footer-brand p { font-size: 13px; color: var(--muted); max-width: 260px; line-height: 1.7; font-weight: 300; }
-    .footer-links h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .footer-brand .tagline { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,237,216,0.5); margin-bottom: 16px; }
+    .footer-brand p { font-size: 13px; color: rgba(245,237,216,0.5); max-width: 260px; line-height: 1.7; font-weight: 300; }
+    .footer-links h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold2); margin-bottom: 16px; }
     .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--cream); }
+    .footer-links a { font-size: 14px; color: rgba(245,237,216,0.5); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #F5EDD8; }
     .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(201,148,10,0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
     .footer-bottom p { font-size: 12px; color: rgba(154,136,112,0.5); }
     .age-warn { font-size: 11px; color: rgba(201,148,10,0.5); font-weight: 500; }
@@ -278,6 +301,7 @@
       <li><a href="#hours">Visit Us</a></li>
     </ul>
     <a href="tel:7709656884" class="nav-cta">Call Us</a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">☀️</button>
   </nav>
 
   <!-- HERO -->
@@ -400,7 +424,7 @@
         </div>
       </div>
       <div class="sel-card">
-        <img class="sel-img" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&q=80" alt="Premium cigars" loading="lazy">
+        <img class="sel-img" src="https://images.unsplash.com/photo-1605745336645-7f12df5be1c8?w=600&q=80" alt="Premium cigars" loading="lazy">
         <div class="sel-body">
         <div class="sel-title">Cigars</div>
         <p class="sel-desc">Premium hand-selected cigars for every occasion and palate. Our staff can help you find the perfect smoke to complement your spirit of choice.</p>
@@ -420,19 +444,19 @@
     <div class="eyebrow">Why Locals Choose Us</div>
     <h2>The New Village<br><em>Difference</em></h2>
     <div class="featured-grid">
-      <div class="feat-card large" style="background:linear-gradient(135deg,#1A1208,#2A1E0A);">
+      <div class="feat-card large" style="background:url('https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80') center/cover no-repeat;">
         <div class="feat-bg"></div>
         <div class="feat-tag">Our Specialty</div>
         <div class="feat-title">Rare & Allocated<br>Bourbon Hunting</div>
         <div class="feat-desc">We stock hard-to-find bottles that most stores can't get. Eagle Rare, Henry McKenna, and other allocated selections for the serious collector.</div>
       </div>
-      <div class="feat-card" style="background:linear-gradient(135deg,#0A1018,#0D1825);">
+      <div class="feat-card" style="background:url('https://images.unsplash.com/photo-1583394293214-0e9232f65ebe?w=600&q=80') center/cover no-repeat;">
         <div class="feat-bg"></div>
         <div class="feat-tag">Staff Knowledge</div>
         <div class="feat-title">Expert<br>Guidance</div>
         <div class="feat-desc">Our team knows their products and loves to talk about them. Come in with a question and leave with the perfect bottle.</div>
       </div>
-      <div class="feat-card" style="background:linear-gradient(135deg,#0F1008,#1A1C0A);">
+      <div class="feat-card" style="background:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80') center/cover no-repeat;">
         <div class="feat-bg"></div>
         <div class="feat-tag">Competitive Pricing</div>
         <div class="feat-title">Great Prices<br>Always</div>
@@ -544,5 +568,15 @@
     </div>
   </footer>
 
+  <script>
+    const btn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('nvs-theme');
+    if(saved === 'light'){ document.body.classList.add('light'); btn.textContent = '🌙'; }
+    btn.addEventListener('click', () => {
+      const isLight = document.body.classList.toggle('light');
+      btn.textContent = isLight ? '🌙' : '☀️';
+      localStorage.setItem('nvs-theme', isLight ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
